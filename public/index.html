@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listita</title>
+
+  <!-- Meta info -->
+  <meta name="description" content="Aplicacion de listado de productos para comprar">
+  <meta name="keywords" content="webapp, aplicacion, listado, compras, supermercado">
+  <meta name="author" content="Abot Lucas">
+  <meta name="copyright" content="Lucas Abot - DevRock 2021">
+
+  <!-- ROBOTS -->
+  <meta name="robots" content="index">
+
+  <!-- ICON -->
+  <link rel="shortcut icon" href="images/iconoylogo.png" type="image/png">
+
+  <!-- Facebook -->
+  <meta property="og:title" content="Listita">
+  <meta property="og:description" content="Tu herramienta para hacer los mandados. Probame!">
+  <meta property="og:type" content="application">
+  <meta property="og:image" content="https://app-lista-de--compras.web.app/images/iconoylogo.png">
+  <meta property="og:url" content="listita.com">
+
+  <!-- Twitter -->
+  <meta property="twitter:title" content="Listita">
+  <meta property="twitter:description" content="Tu herramienta para hacer los mandados. Probame!">
+  <meta property="twitter:type" content="application">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="https://app-lista-de--compras.web.app/images/iconoylogo.png">
+  <meta property="twitter:url" content="listita.com">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Condensed:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header class="sombreado">
+    <img src="images/iconoylogo.png" alt="iconoListita" class="header__icon" id="headerIcon">
+    <nav class="header__nav">
+      <a href="https://app-lista-de--compras.web.app/">
+        <h1 class="header__nav-titulo">Listita</h1>
+      </a>
+    </nav>
+  </header>
+  <section id="pantallaVacio" class="pantallaVacio">
+    <h1 class="pantallaVacio__titulo">Aun no tienes productos para comprar </h1>
+    <h1 class="pantallaVacio__emoji">😕</h1>
+  </section>
+
+  <section id="pantallaListado" class="pantallaListado">
+    <ul class="list-group pantallaListado__lista" id="pantallaListado__lista">
+    </ul>
+  </section>
+
+  <section id="pantallaDetalle" class="pantallaDetalle">
+    <div class="pantallaDetalle__container">
+      <img src="" alt="" class="pantallaDetalle__icono" id="pantallaDetalleIcono">
+      <h1 class="pantallaDetalle__titulo" id="pantallaDetalleProducto"></h1>
+    </div>
+    <p class="pantallaDetalle__descripcion" id="pantallaDetalleDescripcion"></p>
+    <button type="button" class="btn-close botonCerrarDetalle" id="botonCerrarDetalle"></button>
+  </section>
+
+  <section id="formularioEscritorio" class="formularioEscritorio">
+    <div class="mb-3">
+      <label for="pantallaCargaProductoDesktop" class="form-label">Producto</label>
+      <input type="text" class="form-control producto-desktop" id="pantallaCargaProductoDesktop" placeholder="Leche, Lentejas, Zanahoria, etc."
+        maxlength="20" required>
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="pantallaCargaTipoDesktop">Tipo</label>
+      <select class="form-select tipo-desktop" id="pantallaCargaTipoDesktop">
+        <option disabled value="">(-- Tipo de alimento --)</option>
+        <option value="images/productsIcons/verduras.svg">Frutas/Verduras</option>
+        <option value="images/productsIcons/carnes.svg">Carnes/Pescados/Otros</option>
+        <option value="images/productsIcons/lacteos.svg">Lacteos/Huevos</option>
+        <option value="images/productsIcons/cereales.svg">Cereales/Semillas</option>
+        <option value="images/productsIcons/aceites.svg">Aceites/Condimentos</option>
+        <option value="images/productsIcons/legumbres.svg">Legumbres/Frutos Secos</option>
+        <option value="images/productsIcons/bebidas.svg">Bebidas</option>
+        <option value="images/productsIcons/higienePersonal.svg">Higiene Personal</option>
+        <option value="images/productsIcons/limpieza.svg">Limpieza</option>
+        <option value="images/productsIcons/bazar.svg">Bazar</option>
+        <option value="images/productsIcons/otros.svg">Otros</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="pantallaCargaDescripcionDesktop" class="form-label">Descripcion</label>
+      <textarea class="form-control descripcion-desktop" id="pantallaCargaDescripcionDesktop" rows="6"
+        placeholder="Descripcion del producto a comprar..." maxlength="300" required></textarea>
+    </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary btn-cancel-desktop" data-bs-dismiss="modal" id="btn-cancel-desktop">Cancelar</button>
+    <button type="button" class="btn btn-primary btn-add-desktop" id="btn-agregar-desktop">Agregar</button>
+  </section>
+
+  <section class="copyDesktop">
+    <p>Abot Lucas All Rights Reserved ©</p>
+  </section>
+
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn botonDeCarga" data-bs-toggle="modal" data-bs-target="#pantallaCarga"
+    id="botonDeCarga">
+    +
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade pantallaCarga" id="pantallaCarga" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="pantallaCargaProducto" class="form-label">Producto</label>
+            <input type="text" class="form-control" id="pantallaCargaProducto"
+              placeholder="Leche, Lentejas, Zanahoria, etc." maxlength="20" required>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="pantallaCargaTipo">Tipo</label>
+            <select class="form-select" id="pantallaCargaTipo">
+              <option disabled value="">(-- Tipo de alimento --)</option>
+              <option value="images/productsIcons/verduras.svg">Frutas/Verduras</option>
+              <option value="images/productsIcons/carnes.svg">Carnes/Pescados/Otros</option>
+              <option value="images/productsIcons/lacteos.svg">Lacteos/Huevos</option>
+              <option value="images/productsIcons/cereales.svg">Cereales/Semillas</option>
+              <option value="images/productsIcons/aceites.svg">Aceites/Condimentos</option>
+              <option value="images/productsIcons/legumbres.svg">Legumbres/Frutos Secos</option>
+              <option value="images/productsIcons/bebidas.svg">Bebidas</option>
+              <option value="images/productsIcons/higienePersonal.svg">Higiene Personal</option>
+              <option value="images/productsIcons/limpieza.svg">Limpieza</option>
+              <option value="images/productsIcons/bazar.svg">Bazar</option>
+              <option value="images/productsIcons/otros.svg">Otros</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="pantallaCargaDescripcion" class="form-label">Descripcion</label>
+            <textarea class="form-control" id="pantallaCargaDescripcion" rows="6"
+              placeholder="Descripcion del producto a comprar..." maxlength="300" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="pantallaCargaCancelar">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="pantallaCargaAgregar">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer>
+    <p>Copyright Abot Lucas todos los derechos reservados</p>
+  </footer>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
